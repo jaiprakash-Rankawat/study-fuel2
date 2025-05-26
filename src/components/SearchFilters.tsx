@@ -17,6 +17,7 @@ const SearchFilters = ({ activeFilter, onFilterChange }: SearchFiltersProps) => 
   const [selectedBranches, setSelectedBranches] = useState<string[]>([]);
   const [selectedSemesters, setSelectedSemesters] = useState<string[]>([]);
   const [ratingRange, setRatingRange] = useState([4]);
+  const [difficultyLevel, setDifficultyLevel] = useState("");
 
   const branches = [
     "Computer Science Engineering",
@@ -42,10 +43,19 @@ const SearchFilters = ({ activeFilter, onFilterChange }: SearchFiltersProps) => 
   const resourceTypes = [
     { id: "question-papers", label: "Question Papers" },
     { id: "notes", label: "Handwritten Notes" },
+    { id: "flashcards", label: "Flashcards" },
+    { id: "mock-tests", label: "Mock Tests" },
     { id: "practical-files", label: "Practical Files" },
     { id: "competitive", label: "Competitive Exams" },
     { id: "assignments", label: "Assignments" },
     { id: "lab-manuals", label: "Lab Manuals" }
+  ];
+
+  const difficultyLevels = [
+    "Beginner",
+    "Intermediate", 
+    "Advanced",
+    "Expert"
   ];
 
   const handleBranchChange = (branch: string, checked: boolean) => {
@@ -68,6 +78,7 @@ const SearchFilters = ({ activeFilter, onFilterChange }: SearchFiltersProps) => 
     setSelectedBranches([]);
     setSelectedSemesters([]);
     setRatingRange([4]);
+    setDifficultyLevel("");
     onFilterChange("all");
   };
 
@@ -76,7 +87,7 @@ const SearchFilters = ({ activeFilter, onFilterChange }: SearchFiltersProps) => 
       <Card>
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">Filters</CardTitle>
+            <CardTitle className="text-lg">Smart Filters</CardTitle>
             <Button variant="ghost" size="sm" onClick={resetFilters}>
               <RotateCcw className="h-4 w-4 mr-1" />
               Reset
@@ -104,6 +115,23 @@ const SearchFilters = ({ activeFilter, onFilterChange }: SearchFiltersProps) => 
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Difficulty Level */}
+          <div>
+            <Label className="text-sm font-medium mb-3 block">Difficulty Level</Label>
+            <Select value={difficultyLevel} onValueChange={setDifficultyLevel}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select Difficulty" />
+              </SelectTrigger>
+              <SelectContent>
+                {difficultyLevels.map((level) => (
+                  <SelectItem key={level} value={level}>
+                    {level}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Branch */}
@@ -172,20 +200,57 @@ const SearchFilters = ({ activeFilter, onFilterChange }: SearchFiltersProps) => 
             />
           </div>
 
-          {/* Verification Status */}
+          {/* Content Quality & Features */}
           <div>
-            <Label className="text-sm font-medium mb-3 block">Verification</Label>
+            <Label className="text-sm font-medium mb-3 block">Content Features</Label>
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Checkbox id="verified" />
                 <Label htmlFor="verified" className="text-sm font-normal cursor-pointer">
-                  Verified Only
+                  Verified Content Only
                 </Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox id="recent" />
                 <Label htmlFor="recent" className="text-sm font-normal cursor-pointer">
                   Recent Uploads (Last 30 days)
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="interactive" />
+                <Label htmlFor="interactive" className="text-sm font-normal cursor-pointer">
+                  Interactive Content
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="solutions" />
+                <Label htmlFor="solutions" className="text-sm font-normal cursor-pointer">
+                  Includes Solutions
+                </Label>
+              </div>
+            </div>
+          </div>
+
+          {/* Study Mode */}
+          <div>
+            <Label className="text-sm font-medium mb-3 block">Study Mode</Label>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <Checkbox id="quick-review" />
+                <Label htmlFor="quick-review" className="text-sm font-normal cursor-pointer">
+                  Quick Review (Under 1 hour)
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="deep-study" />
+                <Label htmlFor="deep-study" className="text-sm font-normal cursor-pointer">
+                  Deep Study (2+ hours)
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="exam-prep" />
+                <Label htmlFor="exam-prep" className="text-sm font-normal cursor-pointer">
+                  Exam Preparation
                 </Label>
               </div>
             </div>

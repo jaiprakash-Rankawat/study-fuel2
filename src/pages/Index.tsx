@@ -76,7 +76,7 @@ const Index = () => {
                 <BookOpen className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                StudyVault
+                StudyFuel
               </span>
             </div>
 
@@ -84,8 +84,9 @@ const Index = () => {
             <div className="hidden md:flex items-center space-x-8">
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Question Papers</a>
               <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Notes</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Practical Files</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Competitive Exams</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Flashcards</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Mock Tests</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Discussion</a>
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
@@ -113,8 +114,9 @@ const Index = () => {
               <div className="flex flex-col space-y-4">
                 <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Question Papers</a>
                 <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Notes</a>
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Practical Files</a>
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Competitive Exams</a>
+                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Flashcards</a>
+                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Mock Tests</a>
+                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Discussion</a>
                 <div className="flex flex-col space-y-2 pt-4">
                   <Button variant="outline" onClick={() => setIsUploadModalOpen(true)}>
                     <Upload className="h-4 w-4 mr-2" />
@@ -134,13 +136,13 @@ const Index = () => {
       <section className="relative py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Your Ultimate
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Study Resource </span>
-            Platform
+            Fuel Your
+            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent"> Academic Success </span>
+            Journey
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Access previous year papers, quality notes, practical files, and competitive exam resources. 
-            Save time, study smart, and ace your exams with trusted content from top students.
+            Master your exams with interactive flashcards, mock tests, collaborative study groups, and verified study materials. 
+            Join thousands of students accelerating their learning with StudyFuel.
           </p>
           
           {/* Search Bar */}
@@ -149,7 +151,7 @@ const Index = () => {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input
                 type="text"
-                placeholder="Search for question papers, notes, subjects..."
+                placeholder="Search for question papers, notes, flashcards, mock tests..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-12 pr-4 py-4 text-lg border-2 border-blue-200 focus:border-blue-500 rounded-xl"
@@ -189,7 +191,7 @@ const Index = () => {
           {/* Resources Content */}
           <div className="lg:w-3/4">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Recent Resources</h2>
+              <h2 className="text-2xl font-bold text-gray-900">Study Resources</h2>
               <div className="flex items-center space-x-2">
                 <Button variant="outline" size="sm">
                   <Filter className="h-4 w-4 mr-2" />
@@ -199,11 +201,12 @@ const Index = () => {
             </div>
 
             <Tabs defaultValue="all" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-5">
                 <TabsTrigger value="all">All Resources</TabsTrigger>
                 <TabsTrigger value="papers">Question Papers</TabsTrigger>
                 <TabsTrigger value="notes">Notes</TabsTrigger>
-                <TabsTrigger value="practicals">Practicals</TabsTrigger>
+                <TabsTrigger value="flashcards">Flashcards</TabsTrigger>
+                <TabsTrigger value="tests">Mock Tests</TabsTrigger>
               </TabsList>
               
               <TabsContent value="all" className="mt-6">
@@ -234,13 +237,19 @@ const Index = () => {
                 </div>
               </TabsContent>
               
-              <TabsContent value="practicals" className="mt-6">
-                <div className="grid gap-6">
-                  {recentResources
-                    .filter(r => r.type === "Practical Files")
-                    .map((resource) => (
-                      <ResourceCard key={resource.id} resource={resource} />
-                    ))}
+              <TabsContent value="flashcards" className="mt-6">
+                <div className="text-center py-12">
+                  <h3 className="text-xl font-semibold mb-4">Interactive Flashcards Coming Soon!</h3>
+                  <p className="text-gray-600 mb-6">Create and study with digital flashcards featuring spaced repetition.</p>
+                  <Button>Create Flashcard Set</Button>
+                </div>
+              </TabsContent>
+              
+              <TabsContent value="tests" className="mt-6">
+                <div className="text-center py-12">
+                  <h3 className="text-xl font-semibold mb-4">Mock Tests & Quizzes</h3>
+                  <p className="text-gray-600 mb-6">Practice with full-length mock exams and instant feedback.</p>
+                  <Button>Start Practice Test</Button>
                 </div>
               </TabsContent>
             </Tabs>
@@ -252,8 +261,8 @@ const Index = () => {
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Students Love StudyVault</h2>
-            <p className="text-lg text-gray-600">Everything you need for exam success, in one place</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Students Choose StudyFuel</h2>
+            <p className="text-lg text-gray-600">Comprehensive learning tools designed for exam success</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -262,11 +271,11 @@ const Index = () => {
                 <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="h-8 w-8 text-blue-600" />
                 </div>
-                <CardTitle>Verified Content</CardTitle>
+                <CardTitle>Interactive Learning</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  All resources are verified by our community and moderators to ensure quality and authenticity.
+                  Digital flashcards with spaced repetition, mock tests with instant feedback, and progress tracking to optimize your study time.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -274,13 +283,13 @@ const Index = () => {
             <Card className="text-center hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Star className="h-8 w-8 text-green-600" />
+                  <Users className="h-8 w-8 text-green-600" />
                 </div>
-                <CardTitle>Rating System</CardTitle>
+                <CardTitle>Community Learning</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Community-driven ratings help you find the best resources quickly and efficiently.
+                  Join study groups, participate in discussion forums, and learn collaboratively with peer reviews and shared insights.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -288,13 +297,13 @@ const Index = () => {
             <Card className="text-center hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-purple-600" />
+                  <Star className="h-8 w-8 text-purple-600" />
                 </div>
-                <CardTitle>Contributor Rewards</CardTitle>
+                <CardTitle>Personalized Experience</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription>
-                  Earn points and recognition for contributing quality study materials to help fellow students.
+                  Customizable dashboards, progress analytics, and personalized recommendations to enhance your learning journey.
                 </CardDescription>
               </CardContent>
             </Card>
@@ -311,30 +320,30 @@ const Index = () => {
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                   <BookOpen className="h-5 w-5 text-white" />
                 </div>
-                <span className="text-xl font-bold">StudyVault</span>
+                <span className="text-xl font-bold">StudyFuel</span>
               </div>
               <p className="text-gray-400">
-                Empowering students with quality study resources for better exam preparation.
+                Fueling academic success with interactive learning tools and collaborative study resources.
               </p>
             </div>
             
             <div>
-              <h3 className="font-semibold mb-4">Resources</h3>
+              <h3 className="font-semibold mb-4">Study Tools</h3>
               <ul className="space-y-2 text-gray-400">
                 <li><a href="#" className="hover:text-white transition-colors">Question Papers</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Notes</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Practical Files</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Competitive Exams</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Flashcards</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Mock Tests</a></li>
               </ul>
             </div>
             
             <div>
               <h3 className="font-semibold mb-4">Community</h3>
               <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Discussion Forums</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Study Groups</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Upload Content</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Leaderboard</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Discussion</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Guidelines</a></li>
               </ul>
             </div>
             
@@ -350,7 +359,7 @@ const Index = () => {
           </div>
           
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 StudyVault. All rights reserved. Built for students, by students.</p>
+            <p>&copy; 2024 StudyFuel. All rights reserved. Fueling success, one student at a time.</p>
           </div>
         </div>
       </footer>
