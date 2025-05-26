@@ -15,6 +15,8 @@ import QuestionPapers from "./pages/QuestionPapers";
 import PracticalFiles from "./pages/PracticalFiles";
 import Profile from "./pages/Profile";
 import Leaderboard from "./pages/Leaderboard";
+import About from "./pages/About";
+import Colleges from "./pages/Colleges";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,8 @@ const App = () => (
           <Route path="/practical-files" element={<PracticalFiles />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/colleges" element={<Colleges />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
