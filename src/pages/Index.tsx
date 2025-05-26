@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Search, BookOpen, Users, Award, Download, Star, Upload, Filter, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Link } from "react-router-dom";
 import ResourceCard from "@/components/ResourceCard";
 import SearchFilters from "@/components/SearchFilters";
 import UploadModal from "@/components/UploadModal";
@@ -71,22 +71,22 @@ const Index = () => {
       <nav className="bg-white/80 backdrop-blur-md border-b border-blue-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                 <BookOpen className="h-5 w-5 text-white" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 StudyFuel
               </span>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Question Papers</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Notes</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Flashcards</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Mock Tests</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Discussion</a>
+              <Link to="/question-papers" className="text-gray-700 hover:text-blue-600 transition-colors">Question Papers</Link>
+              <Link to="/notes" className="text-gray-700 hover:text-blue-600 transition-colors">Notes</Link>
+              <Link to="/flashcards" className="text-gray-700 hover:text-blue-600 transition-colors">Flashcards</Link>
+              <Link to="/mock-tests" className="text-gray-700 hover:text-blue-600 transition-colors">Mock Tests</Link>
+              <Link to="/discussion" className="text-gray-700 hover:text-blue-600 transition-colors">Discussion</Link>
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
@@ -112,11 +112,11 @@ const Index = () => {
           {isMenuOpen && (
             <div className="md:hidden py-4 border-t border-blue-100">
               <div className="flex flex-col space-y-4">
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Question Papers</a>
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Notes</a>
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Flashcards</a>
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Mock Tests</a>
-                <a href="#" className="text-gray-700 hover:text-blue-600 transition-colors">Discussion</a>
+                <Link to="/question-papers" className="text-gray-700 hover:text-blue-600 transition-colors">Question Papers</Link>
+                <Link to="/notes" className="text-gray-700 hover:text-blue-600 transition-colors">Notes</Link>
+                <Link to="/flashcards" className="text-gray-700 hover:text-blue-600 transition-colors">Flashcards</Link>
+                <Link to="/mock-tests" className="text-gray-700 hover:text-blue-600 transition-colors">Mock Tests</Link>
+                <Link to="/discussion" className="text-gray-700 hover:text-blue-600 transition-colors">Discussion</Link>
                 <div className="flex flex-col space-y-2 pt-4">
                   <Button variant="outline" onClick={() => setIsUploadModalOpen(true)}>
                     <Upload className="h-4 w-4 mr-2" />
@@ -160,6 +160,20 @@ const Index = () => {
                 Search
               </Button>
             </div>
+          </div>
+
+          {/* Quick Actions */}
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Link to="/dashboard">
+              <Button size="lg" className="rounded-xl">
+                Go to Dashboard
+              </Button>
+            </Link>
+            <Link to="/flashcards">
+              <Button variant="outline" size="lg" className="rounded-xl">
+                Start Learning
+              </Button>
+            </Link>
           </div>
 
           {/* Quick Stats */}
@@ -239,9 +253,11 @@ const Index = () => {
               
               <TabsContent value="flashcards" className="mt-6">
                 <div className="text-center py-12">
-                  <h3 className="text-xl font-semibold mb-4">Interactive Flashcards Coming Soon!</h3>
+                  <h3 className="text-xl font-semibold mb-4">Interactive Flashcards</h3>
                   <p className="text-gray-600 mb-6">Create and study with digital flashcards featuring spaced repetition.</p>
-                  <Button>Create Flashcard Set</Button>
+                  <Link to="/flashcards">
+                    <Button>Start Studying Flashcards</Button>
+                  </Link>
                 </div>
               </TabsContent>
               
@@ -249,7 +265,9 @@ const Index = () => {
                 <div className="text-center py-12">
                   <h3 className="text-xl font-semibold mb-4">Mock Tests & Quizzes</h3>
                   <p className="text-gray-600 mb-6">Practice with full-length mock exams and instant feedback.</p>
-                  <Button>Start Practice Test</Button>
+                  <Link to="/mock-tests">
+                    <Button>Start Practice Test</Button>
+                  </Link>
                 </div>
               </TabsContent>
             </Tabs>
@@ -330,20 +348,20 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Study Tools</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Question Papers</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Notes</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Flashcards</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Mock Tests</a></li>
+                <li><Link to="/question-papers" className="hover:text-white transition-colors">Question Papers</Link></li>
+                <li><Link to="/notes" className="hover:text-white transition-colors">Notes</Link></li>
+                <li><Link to="/flashcards" className="hover:text-white transition-colors">Flashcards</Link></li>
+                <li><Link to="/mock-tests" className="hover:text-white transition-colors">Mock Tests</Link></li>
               </ul>
             </div>
             
             <div>
               <h3 className="font-semibold mb-4">Community</h3>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Discussion Forums</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Study Groups</a></li>
+                <li><Link to="/discussion" className="hover:text-white transition-colors">Discussion Forums</Link></li>
+                <li><Link to="/leaderboard" className="hover:text-white transition-colors">Study Groups</Link></li>
                 <li><a href="#" className="hover:text-white transition-colors">Upload Content</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Leaderboard</a></li>
+                <li><Link to="/leaderboard" className="hover:text-white transition-colors">Leaderboard</Link></li>
               </ul>
             </div>
             
